@@ -1,0 +1,190 @@
+{% load static %}
+{% load humanize %}
+<!doctype html>
+<html class="no-js" lang="zxx">
+    
+<!-- index-231:32-->
+<head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{judul}}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Favicon -->
+        <link rel="shortcut icon" type="image/x-icon" href="{% static 'ima/favicon.png' %}">
+        <!-- Material Design Iconic Font-V2.2.0 -->
+        <link rel="stylesheet" href="{% static 'css/material-design-iconic-font.min.css' %}">
+        <!-- Font Awesome -->
+        <link rel="stylesheet" href="{% static 'css/font-awesome.min.css' %}">
+        <!-- Font Awesome Stars-->
+        <link rel="stylesheet" href="{% static '' %}">
+        <!-- Meanmenu CSS -->
+        <link rel="stylesheet" href="{% static 'css/fontawesome-stars.css' %}css/meanmenu.css">
+        <!-- owl carousel CSS -->
+        <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}">
+        <!-- Slick Carousel CSS -->
+        <link rel="stylesheet" href="{% static 'css/slick.css' %}">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="{% static 'css/animate.css' %}">
+        <!-- Jquery-ui CSS -->
+        <link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+        <!-- Venobox CSS -->
+        <link rel="stylesheet" href="{% static 'css/venobox.css' %}">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="{% static 'css/nice-select.css' %}">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="{% static 'css/magnific-popup.css' %}">
+        <!-- Bootstrap V4.1.3 Fremwork CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+        <!-- Helper CSS -->
+        <link rel="stylesheet" href="{% static 'css/helper.css' %}">
+        <!-- Main Style CSS -->
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <!-- Responsive CSS -->
+        <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+        <!-- Modernizr js -->
+        <script src= "{% static "js/vendor/modernizr-2.8.3.min.js" %}"></script>
+        <script src='https://www.google.com/recaptcha/api.js'></script>
+    </head>
+    
+    <style>
+        ul {list-style: none;}
+        .alert-success, .alert-warning, .alert-danger, .alert-info{
+        background-repeat: no-repeat ;
+        background-position: 10px center;
+        height: 40px;
+        text-transform: uppercase;
+        font-size: 12px;
+        line-height: 22px;
+        margin-bottom: 20px;
+        padding-top: 10px;
+        padding-right: 10px;
+        padding-bottom: 10px;
+        padding-left: 50px;
+        }
+        .alert-danger {
+        background-color: #FFFBCC;
+        border: 1px solid #FFF35E;
+        color: #C69E00;
+        background-image: url({% static 'images/menu/error.png' %});
+        }
+        .alert-success{
+        background-color: #EBF8D6;
+        border: 1px solid #A6DD88;
+        color: #539B2D;
+        background-image: url({% static 'images/menu/check.png' %});
+        }
+        </style>
+    <body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+        <!-- Begin Body Wrapper -->
+        <div class="body-wrapper">
+            <!-- Begin Header Area -->
+            <header>
+                <!-- Begin Header Top Area -->
+                <div class="header-top">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Begin Header Top Left Area -->
+                            <div class="col-lg-3 col-md-4">
+                                <div class="header-top-left">
+                                    <ul class="phone-wrap">
+                                        <li><span>Telepon: </span><a href="#">{{statis.telpon}}</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <!-- Header Top Left Area End Here -->
+                           
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Top Area End Here -->
+                <!-- Begin Header Middle Area -->
+                <div class="header-middle pl-sm-0 pr-sm-0 pl-xs-0 pr-xs-0">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Begin Header Logo Area -->
+                            <div class="col-lg-3">
+                                <div class="logo pb-sm-30 pb-xs-30">
+                                    <a href="index.html">
+                                        <img src="{% static 'images/menu/logo/1.jpg' %}" alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Header Logo Area End Here -->
+                            <!-- Begin Header Middle Right Area -->
+                            <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
+                                <!-- Begin Header Middle Searchbox Area -->
+                                <form action="#" class="hm-searchbox">
+                                    <select class="nice-select select-search-category">
+                                        <option value="all">All</option>
+                                        {% for kt in kategori %}
+                                            <option value="{{kt.id}}">{{kt.nama}}</option>  
+                                        {% endfor %}                        
+                                    </select>
+                                    <input type="text" placeholder="Enter your search key ...">
+                                    <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                                </form>
+                                <!-- Header Middle Searchbox Area End Here -->
+                                <!-- Begin Header Middle Right Area -->
+                                <div class="header-middle-right">
+                                    <ul class="hm-menu">                                        
+                                        <!-- Begin Header Mini Cart Area -->
+                                        <li class="hm-minicart">
+                                            <div class="hm-minicart-trigger">
+                                                {% with totail_items=keranjang|length %}
+                                                    {% if keranjang|length > 0 %}
+                                                    <span class="item-icon"></span>
+                                                    <span class="item-text">Rp. {{keranjang.get_total_price|intcomma}} 
+                                                        <span class="cart-item-count"> {{totail_items}}</span>
+                                                    </span>
+                                                    {% else %}
+                                                    <span class="item-icon"></span>
+                                                    <span class="item-text">Rp. 0 
+                                                        <span class="cart-item-count"> 0 </span>
+                                                    </span>
+                                                                    
+                                                    {% endif %}
+                                                {% endwith %}
+                                            </div>   
+                                            <div class="minicart">
+                                                <ul class="minicart-product-list">
+                                                    {% for item in keranjang %}
+                                                    {% with product=item.product %}
+                                                    <li>
+                                                        <a href="" class="minicart-product-image"><img src="{{product.gambar.url}}" alt="{{product.nama_produk}}"></a>
+                                                        <div class="minicart-product-details">
+                                                            <h6><a href="#">{{product.nama_produk}}</a></h6>
+                                                            <span>Rp {{ item.price|intcomma }} x {{item.quantity}}</span>
+                                                            <span><b>Rp. {{ item.total_price|intcomma }}</b></span>
+                                                        </div>
+                                                        <button class="close"><a href="{% url "cart_remove" product.id %}"><i class="fa fa-times"></i></a></button>
+                                                    </li>
+                                                    {% endwith %}
+                                                    {% empty %}
+                                                    <li>Pemesanan Masih Kosong</li>
+                                                    {% endfor %}
+                                                </ul>
+                                                <p class="minicart-total">SUBTOTAL: <span>Rp. {{ keranjang.get_total_price|intcomma }}</span></p>
+                                                <div class="minicart-button">
+                                                    <a href="{% url 'cart_detail' %}" class="li-button li-button-dark li-button-fullwidth li-button-sm">
+                                                        <span>View Full Cart</span>
+                                                    </a>
+                                                    <a href="{% url 'checkout' %}" class="li-button li-button-fullwidth li-button-sm">
+                                                        <span>Checkout</span>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <!-- Header Mini Cart Area End Here -->
+                                    </ul>
+                                </div>
+                                <!-- Header Middle Right Area End Here -->
+                            </div>
+                            <!-- Header Middle Right Area End Here -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Header Middle Area End Here -->
